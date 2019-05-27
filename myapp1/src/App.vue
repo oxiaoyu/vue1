@@ -1,35 +1,20 @@
 <template>
   <div id="app">
-    <header class="header">
-      <my-header></my-header>
-    </header>
-    <div class="content">
-      <keep-alive>
-        <component :is='type'></component>
-      </keep-alive>
-    </div>
-    <footer class="footer">
-      <my-footer></my-footer>
-    </footer>
+      <Header></Header>
+      <div class="content">
+         <router-view></router-view>
+      </div>
+      <Footer></Footer>
   </div>
 </template>
 
 <script>
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import Cont1 from '@/components/Cont1'
-import Cont2 from '@/components/Cont2'
 export default {
-  data () {
-    return {
-      type: 'my-cont1'
-    }
-  },
   components: {
-    'my-footer': Footer,
-    'my-cont1': Cont1,
-    'my-cont2': Cont2,
-    'my-header': Header
+    Footer,
+    Header
   }
 }
 </script>
@@ -58,7 +43,7 @@ html,body,#app{
     @include flex();
     @include rect(100%,auto);
     @include overflow();
-    .cont1{
+    .home{
       @include rect(auto,100%);
       .banner{
       @include rect(100%,1.8rem);
@@ -66,9 +51,6 @@ html,body,#app{
         @include rect(100%,100%);
       }
     };
-    .cont2{
-      @extend .cont1
-    }
     .nav{
       @include rect(100%,.44rem);
       @include flexbox();
@@ -79,18 +61,6 @@ html,body,#app{
         @include rect(auto,100%);
         @include justify-content();
         @include align-items();
-      }
-    }
-    .product{
-      @include padding(.1rem);
-      @include flexbox();
-      @include flex-wrap(wrap);
-      @include justify-content(space-between);
-      li{
-        @include rect(1.45rem,auto);
-        img{
-          @include rect(1.45rem,1rem);
-        }
       }
     }
     }
@@ -108,6 +78,16 @@ html,body,#app{
         @include flex-direction(column);
         @include justify-content();
         @include align-items();
+        span{
+          @include font-size(.12rem);
+        };
+        .iconfont{
+          @include font-size(.24rem);
+          @include line-height(.28rem);
+        };
+        &.router-link-exact-active.router-link-active{
+          @include text-color(#f66);
+        }
       }
     }
   }

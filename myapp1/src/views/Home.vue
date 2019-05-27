@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <my-banner></my-banner>
+    <my-nav></my-nav>
+    <my-product :prodata = 'prodata'></my-product>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import axios from 'axios'
+import Banner from '@/components/Banner'
+import Nav from '@/components/Nav'
+import Product from '@/components/Product'
 export default {
-  name: 'home',
   components: {
-    HelloWorld
+    'my-banner': Banner,
+    'my-nav': Nav,
+    'my-product': Product
+  },
+  data () {
+    return {
+      prodata: []
+    }
+  },
+  mounted () {
+    axios.get('http://www.daxunxun.com/douban').then(res => {
+      this.prodata = res.data
+    }).catch(err => {
+      console.log(err)
+    })
   }
 }
 </script>
