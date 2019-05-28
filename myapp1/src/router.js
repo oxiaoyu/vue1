@@ -4,6 +4,8 @@ import Home from './views/Home.vue'
 import Kind from './views/Kind.vue'
 import Cart from './views/Cart.vue'
 import User from './views/User.vue'
+import Footer from '@/components/Footer'
+import Detail from './views/Detail'
 Vue.use(Router)
 
 export default new Router({
@@ -11,24 +13,54 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '/detail/:id',
+      name: 'detail',
+      components: {
+        default: Detail
+      }
+    },
+    {
       path: '/',
+      alias: '/h',
       name: 'home',
-      component: Home
+      components: {
+        default: Home,
+        'footer': Footer
+      }
     },
     {
       path: '/kind',
+      alias: '/k',
       name: 'kind',
       component: Kind
     },
     {
       path: '/cart',
+      alias: '/c',
       name: 'cart',
       component: Cart
     },
     {
-      path: '/user',
+      path: '/User',
+      alias: '/u',
       name: 'user',
-      component: User
+      component: User,
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          components: {
+            default: () => import('@/components/user/Login')
+          }
+        },
+        {
+          path: 'nologin',
+          name: 'nologin',
+          components: {
+            default: () => import('@/components/user/Nologin')
+          }
+        }
+      ]
     }
   ]
 })

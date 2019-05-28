@@ -1,8 +1,11 @@
 <template>
-  <div class="home">
+  <div class="container">
+    <div class="header">首页</div>
+    <div class="home">
     <my-banner></my-banner>
     <my-nav></my-nav>
     <my-product :prodata = 'prodata'></my-product>
+  </div>
   </div>
 </template>
 
@@ -23,7 +26,7 @@ export default {
     }
   },
   mounted () {
-    axios.get('http://www.daxunxun.com/douban').then(res => {
+    axios.get('http://www.daxunxun.com/douban?start=50&count=100').then(res => {
       this.prodata = res.data
     }).catch(err => {
       console.log(err)

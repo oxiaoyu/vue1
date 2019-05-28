@@ -6,8 +6,3 @@
         <li>个人中心</li>
     </ul>
 </template>
-
-<script>
-export default {
-}
-</script>

@@ -1,37 +1,36 @@
 <template>
   <div id="app">
-      <Header></Header>
       <div class="content">
          <router-view></router-view>
       </div>
-      <Footer></Footer>
+      <router-view name = 'footer'></router-view>
   </div>
 </template>
 
 <script>
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+// import Footer from '@/components/Footer'
+// import Header from '@/components/Header'
 export default {
   components: {
-    Footer,
-    Header
+    // Footer
+    // Header
   }
 }
 </script>
 
 <style lang='scss'>
 @import '@/lib/reset.scss';
-html,body,#app{
+html,body,#app,.box{
   @include rect(100%,100%);  //width:100% height:100%
 }
-#app{
+#app,.box{
   @include flexbox();
   @include flex-direction(column);
   .header{
     @include rect(100%,.44rem);
     @include background-color(#f66);
-    @include flexbox();
-    @include justify-content(space-between);
+    @include text-align();
+    @include line-height(.44rem);
     a{
       @include rect(.5rem,100%);
       @include text-align();
@@ -39,7 +38,7 @@ html,body,#app{
       @include color(#fff);
     }
   }
-  .content{
+  .content,.container{
     @include flex();
     @include rect(100%,auto);
     @include overflow();
