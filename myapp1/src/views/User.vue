@@ -13,7 +13,7 @@ export default {
   mounted () {
     if (localStorage.getItem('isLogin') === 'ok') {
       this.$router.push('/user/login')
-    }else{
+    } else {
       this.$router.push('/user/nologin')
     }
   }

@@ -1,11 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Kind from './views/Kind.vue'
-import Cart from './views/Cart.vue'
-import User from './views/User.vue'
-import Footer from '@/components/Footer'
-import Detail from './views/Detail'
 Vue.use(Router)
 
 export default new Router({
@@ -13,38 +7,50 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '',
+      redirect: '/home'
+    },
+    {
       path: '/detail/:id',
       name: 'detail',
       components: {
-        default: Detail
+        default: () => import('./views/Detail')
       }
     },
     {
-      path: '/',
+      path: '/home',
       alias: '/h',
       name: 'home',
       components: {
-        default: Home,
-        'footer': Footer
+        default: () => import('./views/Home'),
+        footer: () => import('./components/Footer')
       }
     },
     {
       path: '/kind',
       alias: '/k',
       name: 'kind',
-      component: Kind
+      components: {
+        default: () => import('./views/Kind')
+      }
     },
     {
       path: '/cart',
       alias: '/c',
       name: 'cart',
-      component: Cart
+      components: {
+        default: () => import('./views/Cart.vue'),
+        footer: () => import('./components/Footer')
+      }
     },
     {
       path: '/User',
       alias: '/u',
       name: 'user',
-      component: User,
+      components: {
+        default: () => import('./views/User.vue'),
+        footer: () => import('./components/Footer')
+      },
       children: [
         {
           path: 'login',

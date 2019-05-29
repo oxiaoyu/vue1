@@ -9,7 +9,7 @@
 export default {
   methods: {
     login () {
-      localStorage.setItem('isLogin','ok');
+      localStorage.setItem('isLogin', 'ok')
       this.$router.push('/user/login')
     }
   }

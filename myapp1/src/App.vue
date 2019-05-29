@@ -38,28 +38,36 @@ html,body,#app,.box{
       @include color(#fff);
     }
   }
-  .content,.container{
+  .content{
     @include flex();
     @include rect(100%,auto);
     @include overflow();
-    .home{
-      @include rect(auto,100%);
-      .banner{
-      @include rect(100%,1.8rem);
-      img{
-        @include rect(100%,100%);
-      }
-    };
-    .nav{
-      @include rect(100%,.44rem);
+    .container{
+       @include rect(100%,100%);
       @include flexbox();
-      @include border(.01rem,#000,solid);
-      li{
+      @include flex-direction(column);
+      position:relative;
+      .home{
         @include flex();
-        @include flexbox();
         @include rect(auto,100%);
-        @include justify-content();
-        @include align-items();
+        overflow-y:auto;
+        .banner{
+        @include rect(100%,1.8rem);
+        img{
+          @include rect(100%,100%);
+        }
+      };
+      .nav{
+        @include rect(100%,.44rem);
+        @include flexbox();
+        @include border(.01rem,#000,solid);
+        li{
+          @include flex();
+          @include flexbox();
+          @include rect(auto,100%);
+          @include justify-content();
+          @include align-items();
+        }
       }
     }
     }
@@ -84,7 +92,7 @@ html,body,#app,.box{
           @include font-size(.24rem);
           @include line-height(.28rem);
         };
-        &.router-link-exact-active.router-link-active{
+        &.router-link-active{
           @include text-color(#f66);
         }
       }
