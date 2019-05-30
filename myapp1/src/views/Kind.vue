@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <div class="header">分页</div>
+     <van-nav-bar
+      title="分类"
+    />
     <div class="kind">
     分类内容
     </div>
@@ -10,5 +12,7 @@
 <script>
 
 export default {
+  methods: {
+  }
 }
 </script>

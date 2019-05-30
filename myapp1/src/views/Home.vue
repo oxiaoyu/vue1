@@ -12,7 +12,7 @@
       </van-search>
     </div>
     <div class="home" >
-      <mt-loadmore :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
+      <mt-loadmore :top-method="loadTop" :auto-fill='false' :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
         <ul>
           <my-banner></my-banner>
           <!-- <my-nav></my-nav> -->
@@ -70,10 +70,14 @@ export default {
         console.log(err)
       })
     },
+    scrollTop () {
+      console.log(this.target)
+    },
     onSearch () {
     }
   },
   mounted () {
+    this.$el.children[1].addEventListener('scroll', this.scrollTop)
     axios.get(`http://www.daxunxun.com/douban`).then(res => {
       this.prodata = res.data
     }).catch(err => {

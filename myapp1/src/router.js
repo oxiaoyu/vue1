@@ -31,7 +31,8 @@ export default new Router({
       alias: '/k',
       name: 'kind',
       components: {
-        default: () => import('./views/Kind')
+        default: () => import('./views/Kind'),
+        footer: () => import('./components/Footer')
       }
     },
     {
@@ -39,12 +40,11 @@ export default new Router({
       alias: '/c',
       name: 'cart',
       components: {
-        default: () => import('./views/Cart.vue'),
-        footer: () => import('./components/Footer')
+        default: () => import('./views/Cart.vue')
       }
     },
     {
-      path: '/User',
+      path: '/user',
       alias: '/u',
       name: 'user',
       components: {
@@ -53,20 +53,32 @@ export default new Router({
       },
       children: [
         {
-          path: 'login',
-          name: 'login',
-          components: {
-            default: () => import('@/components/user/Login')
-          }
-        },
-        {
           path: 'nologin',
           name: 'nologin',
-          components: {
-            default: () => import('@/components/user/Nologin')
-          }
+          component: () => import('./components/user/NoLogin')
+        },
+        {
+          path: 'content',
+          name: 'content',
+          component: () => import('./components/user/Content')
         }
       ]
+    },
+    {
+      path: '/Login',
+      alias: '/L',
+      name: 'login',
+      components: {
+        default: () => import('./views/Login.vue')
+      }
+    },
+    {
+      path: '/Register',
+      alias: '/R',
+      name: 'register',
+      components: {
+        default: () => import('./views/Register.vue')
+      }
     }
   ]
 })
